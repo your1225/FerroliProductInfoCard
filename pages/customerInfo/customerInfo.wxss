@@ -1,0 +1,25 @@
+/* pages/customerInfo/customerInfo.wxss */
+.rec_main {
+    margin: 10rpx;
+    padding: 20rpx;
+    background-color: white;
+}
+
+.rec_main .recContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rec_no_data {
+    text-align: center;
+    padding-top: 150rpx;
+}
+
+.rec_no_data image {
+    width: 60%;
+}
+
+.rec_no_data .no_data_text {
+    font-size: large;
+}

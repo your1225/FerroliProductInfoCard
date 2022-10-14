@@ -1,0 +1,26 @@
+<!--pages/customerInfo/customerInfo.wxml-->
+<wxs src="../../utils/filter.wxs" module="filter" />
+<view wx:if="{{lotteryStoreList.length>0}}">
+    <view wx:for="{{lotteryStoreList}}" wx:key="loId" class="rec_main">
+        <view class="recContent">
+            <view style="color: green;">{{item.loMacType}}</view>
+            <view style="color: lightgray;">{{item.bSiName}}</view>
+            <view>
+                <button type="primary" size="mini" bindtap="handleSetMacQrcode" data-value="{{item.loId}}">录入机器条码</button>
+            </view>
+        </view>
+        <view class="recContent">
+            <view style="color: red;font-weight: bolder;">{{item.loMacModel}}</view>
+            <view style="color: lightgray;">{{item.loMacNum}}</view>
+            <view style="color: lightgray;">{{item.loMacMoney}}</view>
+        </view>
+        <view class="recContent">
+            <view style="color: lightgray;">{{item.loMacQrcode}}</view>
+            <view style="color: lightgray;">{{filter.dateFormatStr(item.loBuyDate)}}</view>
+        </view>
+    </view>
+</view>
+<view wx:else class="rec_no_data">
+    <image src="http://183.236.245.250:9015/WeChat/no_data.png" mode="widthFix" />
+    <view class="no_data_text">未发现您的购买信息。</view>
+</view>

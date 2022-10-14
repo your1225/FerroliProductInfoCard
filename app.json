@@ -1,0 +1,46 @@
+{
+    "pages": [
+        "pages/launchScreen/launchScreen",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/customerInfo/customerInfo",
+        "pages/tips/tips",
+        "pages/updateQrcode/updateQrcode"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "法罗力热能设备（中国）有限公司",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#000000",
+        "selectedColor": "#ff6600",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "text": "购买信息",
+                "pagePath": "pages/index/index",
+                "iconPath": "images/tabbar_icon_home_default.png",
+                "selectedIconPath": "images/tabbar_icon_home_active.png"
+            },
+            {
+                "text": "已购信息",
+                "pagePath": "pages/customerInfo/customerInfo",
+                "iconPath": "images/tabbar_icon_customer_default.png",
+                "selectedIconPath": "images/tabbar_icon_customer_active.png"
+            }
+        ]
+    },
+    "requiredPrivateInfos": [
+        "chooseAddress"
+    ],
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents",
+    "useExtendedLib": {
+        "kbone": true,
+        "weui": true
+    }
+}

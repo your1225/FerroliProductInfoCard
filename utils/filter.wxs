@@ -1,0 +1,18 @@
+var dateFormatStr = function (dateStr) {
+    if (dateStr != null) {
+        return dateStr.replace('T', ' ').replace('00:00:00', '')
+    } else {
+        return ''
+    }    
+}
+var moneyFormat = function (money) {
+    return parseFloat(money).toFixed(2);
+}
+
+/*
+ * 导出
+ */
+module.exports = {
+    dateFormatStr: dateFormatStr,
+    moneyFormat: moneyFormat
+}
