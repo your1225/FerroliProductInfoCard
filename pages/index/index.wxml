@@ -1,23 +1,93 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>
+<mp-form-page title="活动购机用户信息录入" subtitle="">
+    <mp-form id="form" ext-class="form-background-change">
+        <mp-cells title="您的信息">
+            <mp-cell>
+                <view>
+                    <button type="primary" plain="true" bindtap="handleGetAddress">从我的地址获取</button>
+                </view>
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">姓名</view>
+                <view>
+                    <input type="text" value="{{loCusName}}" placeholder="您怎么称呼" placeholder-class="weui-input__placeholder" bindinput="bindLoCusName" />
+                </view>
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title" style="color: red;font-weight: bold;">手机</view>
+                <view>
+                    <input type="number" value="{{loCusTel}}" placeholder="您的手机号码" placeholder-class="weui-input__placeholder" bindinput="bindLoCusTel" />
+                </view>
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">地址</view>
+                <view>
+                    <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+                        <view>{{region[0]}} _ {{region[1]}} _ {{region[2]}}</view>
+                    </picker>
+                </view>
+            </mp-cell>
+            <mp-cell>
+                <view>
+                    <textarea class="weui-textarea" placeholder="请填写详细地址" value="{{loAddress}}" bindinput="bindLoAddress" style="height: 100rpx"></textarea>
+                    <view class="weui-textarea-counter">50</view>
+                </view>
+            </mp-cell>
+        </mp-cells>
+
+        <mp-cells title="产品购买信息">
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">购机日期</view>
+                <view>
+                    <picker mode="date" value="{{loBuyDate}}" start="{{dtStart}}" end="{{dtEnd}}" bindchange="bindLoBuyDateChange">
+                        <a class="picker">{{loBuyDate}}</a>
+                    </picker>
+                </view>
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">产品品类</view>
+                <picker mode="selector" range="{{macTypes}}" value="{{typeSelectIndex}}" bindchange="bindMacTypeChange">
+                    <view class="picker">{{macTypes[typeSelectIndex]}}</view>
+                </picker>
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">机器型号</view>
+                <input type="text" value="{{loMacModel}}" placeholder="您的机器型号" placeholder-class="weui-input__placeholder" bindinput="bindLoMacModel" />
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">购机数量</view>
+                <input type="number" value="{{loMacNum}}" placeholder="您的购机数量" placeholder-class="weui-input__placeholder" bindinput="bindLoMacNum" />
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">购机金额</view>
+                <input type="digit" value="{{loMacMoney}}" placeholder="您的购机金额" placeholder-class="weui-input__placeholder" bindinput="bindLoMacMoney" />
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">购机门店</view>
+                <picker mode="selector" range="{{shopInfos}}" value="{{shopSelectIndex}}" range-key="bSiName" bindchange="bindShopSelectChange">
+                    <view class="picker">{{shopInfos[shopSelectIndex].bSiName}}</view>
+                </picker>
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">预安装日期</view>
+                <view>
+                    <picker mode="date" value="{{loInstallDate}}" start="{{dtStart}}" end="{{dtEnd}}" bindchange="bindLoInstallDateChange">
+                        <a class="picker">{{loInstallDate}}</a>
+                    </picker>
+                </view>
+            </mp-cell>
+            <mp-cell ext-class="item-height-change">
+                <view slot="title">机器条码</view>
+                <input type="text" value="{{loMacQrcode}}" placeholder="您的机器条码" placeholder-class="weui-input__placeholder" bindinput="bindLoMacQrcode" />
+            </mp-cell>
+        </mp-cells>
+
+    </mp-form>
+
+    <view slot="button">
+        <button type="primary" bindtap="handlePost">保存</button>
+    </view>
+
+    <mp-half-screen-dialog bindbuttontap="closeDialog" show="{{savedDialog}}" mask="{{true}}" maskClosable="{{false}}" title="{{savedTitle}}" desc="{{savedDesc}}" buttons="{{dialogButtons}}" bindclose="closeDialog">
+    </mp-half-screen-dialog>
+</mp-form-page>

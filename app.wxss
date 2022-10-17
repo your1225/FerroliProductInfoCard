@@ -8,3 +8,36 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+/* 
+主题颜色，通过变量来实现 
+1、less中存在变量这个知识
+2、原生的css和wxss也是支持变量
+*/
+page {
+    /* 定义主题颜色 */
+    --themeColor: #eb4450;
+    --borderColor: #c0c0c0;
+    --captionColor: #999999;
+    --mainBackground: #f2f2f2;
+  
+    /* 定义主题颜色（深色） */
+    --themeColorDark: #ebb1b5;
+    --borderColorDark: #c0c0c0;
+    --captionColorDark: #999999;
+    --mainBackgroundDark: #747474;
+  
+    /* 
+      定义统一字体大小，假设设计稿大小是375px 
+      1px = 2rpx
+      14px = 28rpx
+      font-size: 28rpx;
+    */
+      
+    /* background-color: #f2f2f2; */
+    background: #f8f9fc;
+  }
+  
+  image {
+    width: 100%;
+  }

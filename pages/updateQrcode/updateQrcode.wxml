@@ -1,2 +1,34 @@
 <!--pages/updateQrcode/updateQrcode.wxml-->
-<text>pages/updateQrcode/updateQrcode.wxml</text>
+<mp-form-page title="填入产品二维码" subtitle="{{selectLotteryStore.loMacType}} - {{selectLotteryStore.loMacModel}}">
+    <mp-form id="form">
+        <mp-cells title="产品信息">
+            <mp-cell ext-class="item-height-change">
+                <view>
+                    <input type="text" value="{{qrCode}}" placeholder="请扫描产品侧面或底部二维码" placeholder-class="weui-input__placeholder" bindinput="bindQrcode" />
+                </view>
+                <view slot="footer">
+                    <button type="primary" size="mini" plain="true" bindtap="handleGetProductInfo">扫码</button>
+                </view>
+            </mp-cell>
+            <mp-cell ext-class="item-background-change item-height-change">
+                <view slot="title">品牌</view>
+                <view>{{baseProductInfo.bPtName}}</view>
+            </mp-cell>
+            <mp-cell ext-class="item-background-change item-height-change">
+                <view slot="title">类型</view>
+                <view>{{baseProductInfo.bPmName}}</view>
+            </mp-cell>
+            <mp-cell ext-class="item-background-change item-height-change">
+                <view slot="title">名称</view>
+                <view style="color: darkorange;font-weight: bold;">{{baseProductInfo.bPiName}}</view>
+            </mp-cell>
+        </mp-cells>
+    </mp-form>
+
+    <view slot="button">
+        <button type="primary" bindtap="handlePost">保存</button>
+    </view>
+
+    <mp-half-screen-dialog bindbuttontap="closeDialog" show="{{savedDialog}}" mask="{{true}}" maskClosable="{{false}}" title="{{savedTitle}}" desc="{{savedDesc}}" buttons="{{dialogButtons}}" bindclose="closeDialog">
+    </mp-half-screen-dialog>
+</mp-form-page>

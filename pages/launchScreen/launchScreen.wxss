@@ -1,1 +1,17 @@
-/* pages/launchScreen/launchScreen.wxss */
+/* pages/launchScreen/launchScreen.wxss *//* pages/launchScreen.wxss */
+page {
+    height: 100%;
+}
+
+.logo_wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_wrap .loading_text {
+    font-size: large;
+}

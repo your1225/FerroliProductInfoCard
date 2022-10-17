@@ -11,7 +11,9 @@ export const getSetting = () => {
                 reject(err);
             }
         });
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 /**
@@ -27,7 +29,9 @@ export const chooseAddress = () => {
                 reject(err);
             }
         });
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 /**
@@ -43,7 +47,9 @@ export const openSetting = () => {
                 reject(err);
             }
         });
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 /**
@@ -62,7 +68,9 @@ export const showModel = ({ content }) => {
                 reject(err);
             }
         })
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 /**
@@ -81,7 +89,9 @@ export const showToast = ({ title }) => {
                 reject(err);
             }
         })
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 /**
@@ -98,7 +108,9 @@ export const login = () => {
                 reject(err);
             }
         });
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 /**
@@ -116,5 +128,7 @@ export const requestPayment = ({ pay }) => {
                 reject(err);
             }
         })
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }

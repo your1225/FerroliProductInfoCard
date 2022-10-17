@@ -16,6 +16,7 @@ App({
   globalData: {
     userInfo: null,
     publishDate: '法罗力 发布日期：2022-10-15',
+    baId: 0,
     openid: ""
   }
 })

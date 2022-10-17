@@ -1,2 +1,13 @@
 <!--pages/tips/tips.wxml-->
-<text>pages/tips/tips.wxml</text>
+<view style="text-align: center;">
+    <view style="margin-top: 50rpx;">
+        <icon type="success" size="90" />
+    </view>
+
+    <view style="font-size: larger; margin-top: 30rpx;">提交成功</view>
+
+    <view style="font-size: small; margin-top: 30rpx;">感谢您的惠顾，祝您生活愉快！</view>
+    <view style="font-size: small;">期待您再次光临！</view>
+
+    <button type="primary" style="margin-top: 100rpx;" bindtap="onClickToBack">返回</button>
+</view>

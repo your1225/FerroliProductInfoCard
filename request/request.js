@@ -31,5 +31,7 @@ export const request = (params) => {
                 }
             }
         });
-    })
+    }).catch(error => {
+        console.log(error);
+    });
 }
