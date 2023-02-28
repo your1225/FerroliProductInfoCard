@@ -11,6 +11,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        imageUrl: app.globalData.imageUrl,
         loId: -1,
         savedDialog: false,
         savedTitle: "",

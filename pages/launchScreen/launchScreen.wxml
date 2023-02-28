@@ -1,7 +1,9 @@
 <!--pages/launchScreen.wxml-->
 <view class="logo_wrap">
-  <image src="{{currentBackgroundImage}}" mode="scaleToFill" style="height: 100%; width: 100%;" />
-  <!-- <view class="loading_text">
+    <block wx:if="{{isImageLoaded}}">
+        <image src="{{imageUrl + currentBackgroundImage}}" mode="scaleToFill" style="height: 100%; width: 100%;" />
+    </block>
+    <!-- <view class="loading_text">
     载入中，请稍后...
-  </view> -->
+    </view> -->
 </view>

@@ -1,15 +1,6 @@
-<!--index.wxml-->
-<mp-form-page title="活动购机用户信息录入" subtitle="">
+<!--pages/appointment/appointment.wxml-->
+<mp-form-page title="预约信息录入" subtitle="">
     <mp-form id="form" ext-class="form-background-change">
-        <mp-cells>
-            <mp-cell link ext-class="item-height-change">
-                <view slot="title">预售信息</view>
-                <picker mode="selector" range="{{loInfos}}" value="{{loSelectIndex}}" range-key="loCusName" bindchange="bindLoIdSelectChange">
-                    <view class="picker">{{loInfos[loSelectIndex].loCusName}}</view>
-                </picker>
-            </mp-cell>
-        </mp-cells>
-
         <mp-cells title="您的信息">
             <mp-cell>
                 <view>
@@ -42,59 +33,25 @@
                     <view class="weui-textarea-counter">50</view>
                 </view>
             </mp-cell>
-        </mp-cells>
-
-        <mp-cells title="产品购买信息">
             <mp-cell ext-class="item-height-change">
-                <view slot="title">购机日期</view>
+                <view slot="title">售卡日期</view>
                 <view>
-                    <picker mode="date" value="{{loBuyDate}}" start="{{dtStart}}" end="{{dtEnd}}" bindchange="bindLoBuyDateChange">
-                        <a class="picker">{{loBuyDate}}</a>
+                    <picker mode="date" value="{{loCardSellingDate}}" start="{{dtStart}}" end="{{dtEnd}}" bindchange="bindLoCardSellingDateChange">
+                        <a class="picker">{{loCardSellingDate}}</a>
                     </picker>
                 </view>
             </mp-cell>
             <mp-cell ext-class="item-height-change">
-                <view slot="title">产品品类</view>
-                <picker mode="selector" range="{{macTypes}}" value="{{typeSelectIndex}}" bindchange="bindMacTypeChange">
-                    <view class="picker">{{macTypes[typeSelectIndex]}}</view>
-                </picker>
-            </mp-cell>
-            <mp-cell ext-class="item-height-change">
-                <view slot="title">机器型号</view>
-                <input type="text" value="{{loMacModel}}" placeholder="您的机器型号" placeholder-class="weui-input__placeholder" bindinput="bindLoMacModel" />
-            </mp-cell>
-            <mp-cell ext-class="item-height-change">
-                <view slot="title">购机数量</view>
-                <input type="number" value="{{loMacNum}}" placeholder="您的购机数量" placeholder-class="weui-input__placeholder" bindinput="bindLoMacNum" />
-            </mp-cell>
-            <mp-cell ext-class="item-height-change">
-                <view slot="title">购机金额</view>
-                <input type="digit" value="{{loMacMoney}}" placeholder="您的购机金额" placeholder-class="weui-input__placeholder" bindinput="bindLoMacMoney" />
-            </mp-cell>
-            <mp-cell ext-class="item-height-change">
-                <view slot="title">购机门店</view>
+                <view slot="title">预售门店</view>
                 <picker mode="selector" range="{{shopInfos}}" value="{{shopSelectIndex}}" range-key="bSiName" bindchange="bindShopSelectChange">
                     <view class="picker">{{shopInfos[shopSelectIndex].bSiName}}</view>
                 </picker>
             </mp-cell>
             <mp-cell ext-class="item-height-change">
-                <view slot="title">预安装日期</view>
-                <view>
-                    <picker mode="date" value="{{loInstallDate}}" start="{{dtStart}}" end="{{dtEnd}}" bindchange="bindLoInstallDateChange">
-                        <a class="picker">{{loInstallDate}}</a>
-                    </picker>
-                </view>
-            </mp-cell>
-            <mp-cell ext-class="item-height-change">
                 <view slot="title">销售人员</view>
                 <input type="text" value="{{loSalesName}}" placeholder="销售人员姓名" placeholder-class="weui-input__placeholder" bindinput="bindLoSalesName" />
             </mp-cell>
-            <mp-cell ext-class="item-height-change">
-                <view slot="title">机器条码</view>
-                <input type="text" value="{{loMacQrcode}}" placeholder="您的机器条码" placeholder-class="weui-input__placeholder" bindinput="bindLoMacQrcode" />
-            </mp-cell>
         </mp-cells>
-
     </mp-form>
 
     <view slot="button">

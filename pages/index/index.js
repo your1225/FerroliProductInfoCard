@@ -2,19 +2,32 @@
 // 获取应用实例
 const app = getApp()
 
-import { request } from "../../request/request.js";
-import { addMonth, formatDateByH, formatDate } from "../../utils/util.js"
-import { showToast } from "../../utils/asyncWx.js"
+import {
+    request
+} from "../../request/request.js";
+import {
+    addMonth,
+    formatDateByH,
+    formatDate
+} from "../../utils/util.js"
+import {
+    showToast
+} from "../../utils/asyncWx.js"
 
 Page({
     data: {
+        isUpdate: false,
+        imageUrl: app.globalData.imageUrl,
         qrCode: "",
         region: [],
         macTypes: ['电热水器', '燃气热水器', '壁挂炉', '烟机灶具', '集成灶', '套餐（多件）'],
         shopInfos: [],
+        loInfos: [],
+        loSelectIndex: -1,
         typeSelectIndex: 0,
         shopSelectIndex: 0,
         loBuyDate: "2022-06-18",
+        loSalesName: "",
         loCusName: "",
         loCusTel: "",
         loAddress: "",
@@ -28,14 +41,34 @@ Page({
         savedDialog: false,
         savedTitle: "",
         savedDesc: "",
-        dialogButtons: [
-            {
-                type: 'primary',
-                className: '',
-                text: '关闭',
-                value: 1
-            }
-        ]
+        dialogButtons: [{
+            type: 'primary',
+            className: '',
+            text: '关闭',
+            value: 1
+        }]
+    },
+
+    bindLoIdSelectChange(e) {
+        // console.log(e.detail.value);
+
+        if (e.detail.value < 0 || this.data.loInfos.length == 0) {
+            // console.log(e.detail.value);
+            // console.log(this.data.loInfos.length);
+
+            return;
+        }
+
+        this.setData({
+            isUpdate: true,
+            loSelectIndex: e.detail.value,
+            loCusName: this.data.loInfos[e.detail.value].loCusName,
+            loCusTel: this.data.loInfos[e.detail.value].loCusTel,
+            loAddress: this.data.loInfos[e.detail.value].loAddress,
+            region: [this.data.loInfos[e.detail.value].loProvince, this.data.loInfos[e.detail.value].loCity, this.data.loInfos[e.detail.value].loDistrict]
+        })
+
+        this.getShopList();
     },
 
     bindLoMacModel(e) {
@@ -86,6 +119,12 @@ Page({
         })
     },
 
+    bindLoSalesName(e) {
+        this.setData({
+            loSalesName: e.detail.value
+        })
+    },
+
     bindLoAddress(e) {
         this.setData({
             loAddress: e.detail.value
@@ -99,7 +138,7 @@ Page({
             region: e.detail.value
         })
 
-        this.getCustomerList();
+        this.getShopList();
     },
 
     bindMacTypeChange(e) {
@@ -126,46 +165,58 @@ Page({
                     loAddress: res.detailInfo
                 });
 
-                this.getCustomerList();
+                this.getShopList();
             }
         })
     },
 
     /**
-    * 保存前检查
-    */
+     * 保存前检查
+     */
     checkData() {
         var dataLen = this.data.loAddress.length;
         if (dataLen < 5) {
-            showToast({ title: "详细地址不少于5个字！" });
+            showToast({
+                title: "详细地址不少于5个字！"
+            });
             return false;
         }
 
         dataLen = this.data.loCusTel.length;
         if (dataLen != 11) {
-            showToast({ title: "必须填入11位手机号码！" });
+            showToast({
+                title: "必须填入11位手机号码！"
+            });
             return false;
         }
 
         dataLen = this.data.loMacModel.length;
         if (dataLen < 3) {
-            showToast({ title: "必须填入机器型号，且多于3个字！" });
+            showToast({
+                title: "必须填入机器型号，且多于3个字！"
+            });
             return false;
         }
 
         if (this.data.loMacNum == 0) {
-            showToast({ title: "必须填入购机数量！" });
+            showToast({
+                title: "必须填入购机数量！"
+            });
             return false;
         }
 
         if (this.data.loMacMoney < 100) {
-            showToast({ title: "必须填入金额，且大于100！" });
+            showToast({
+                title: "必须填入金额，且大于100！"
+            });
             return false;
         }
 
         dataLen = this.data.loCusName.length;
         if (dataLen < 2) {
-            showToast({ title: "姓名不少于2个字！" });
+            showToast({
+                title: "姓名不少于2个字！"
+            });
             return false;
         }
 
@@ -174,6 +225,7 @@ Page({
 
     clearData() {
         this.setData({
+            isUpdate: false,
             loCusName: "",
             loCusTel: "",
             region: [],
@@ -181,29 +233,52 @@ Page({
             loMacModel: "",
             loMacNum: 1,
             loMacMoney: 0,
+            loSelectIndex: -1,
+            loInfos: []
         });
     },
 
     /**
-   * 获取客户信息
-   */
-    async getCustomerList() {
+     * 获取门店信息
+     */
+    async getShopList() {
         var res = []
 
         // console.log(this.data.region.length)
 
         if (this.data.region.length > 0)
-            res = await request({ url: "Base/BaseShopInfo_GetModelList/BGcName = '" + this.data.region[1] + "'" });
+            res = await request({
+                url: "Base/BaseShopInfo_GetModelList/BGcName = '" + this.data.region[1] + "'"
+            });
         else
-            res = await request({ url: "Base/BaseShopInfo_GetModelList/1=1" });
+            res = await request({
+                url: "Base/BaseShopInfo_GetModelList/1=1"
+            });
 
         this.setData({
             shopInfos: res
         })
     },
 
+    /**
+     * 获取预售信息
+     */
+    async getCustomerList() {
+        var res = []
+
+        // console.log(this.data.region.length)
+
+        res = await request({
+            url: "LotteryStore/GetModelList/WeChatOpenId='" + app.globalData.openid + "' AND LOMacNum=0"
+        });
+
+        this.setData({
+            loInfos: res
+        })
+    },
+
     async saveData() {
-        const loId = -1;
+        const loId = this.data.isUpdate == false ? -1 : this.data.loInfos[this.data.loSelectIndex].loId;
         const baId = app.globalData.baId;
         const weChatOpenId = app.globalData.openid;
         const loBuyDate = this.data.loBuyDate;
@@ -217,9 +292,11 @@ Page({
         const loMacModel = this.data.loMacModel;
         const loMacNum = this.data.loMacNum;
         const loMacMoney = this.data.loMacMoney;
+        const loSalesName = this.data.loSalesName;
         const loMacQrcode = this.data.loMacQrcode;
         const bSiId = this.data.shopInfos[this.data.shopSelectIndex].bSiId;
         const loInstallDate = this.data.loInstallDate;
+        const loCardSellingDate = this.data.loBuyDate;
 
         if (bSiId == undefined) {
             bSiId = -1;
@@ -230,13 +307,37 @@ Page({
         // return;
 
         const saveParams = {
-            loId, baId, weChatOpenId, loBuyDate, loCusName, loCusTel, loProvince, loCity, loDistrict, loAddress, loMacType, loMacModel
-            , loMacNum, loMacMoney, loMacQrcode, bSiId, loInstallDate
+            loId,
+            baId,
+            weChatOpenId,
+            loBuyDate,
+            loCusName,
+            loCusTel,
+            loProvince,
+            loCity,
+            loDistrict,
+            loAddress,
+            loMacType,
+            loMacModel,
+            loMacNum,
+            loMacMoney,
+            loMacQrcode,
+            bSiId,
+            loInstallDate,
+            loSalesName,
+            loCardSellingDate
         };
 
         // console.log(saveParams);
 
-        const { fOK, fMsg } = await request({ url: "LotteryStore/Add", method: "POST", data: saveParams });
+        const {
+            fOK,
+            fMsg
+        } = await request({
+            url: this.data.isUpdate == false ? "LotteryStore/Add" : "LotteryStore/Update",
+            method: "POST",
+            data: saveParams
+        });
 
         if (fOK === "True") {
             this.clearData();
@@ -290,5 +391,7 @@ Page({
             dtStart: formatDateByH(startDate),
             dtEnd: formatDateByH(endDate)
         })
+
+        this.getCustomerList();
     }
 })

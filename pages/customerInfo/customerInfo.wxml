@@ -21,6 +21,6 @@
     </view>
 </view>
 <view wx:else class="rec_no_data">
-    <image src="http://183.236.245.250:9015/WeChat/no_data.png" mode="widthFix" />
+    <image src="{{imageUrl}}no_data.png" mode="widthFix" />
     <view class="no_data_text">未发现您的购买信息。</view>
 </view>

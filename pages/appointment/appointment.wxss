@@ -1,0 +1,44 @@
+/* pages/appointment/appointment.wxss */
+/* 正常模式下应用的样式 */
+.item-background-change {
+    /* height: 30rpx; */
+    /* padding: 30rpx 100rpx 80rpx 100rpx; */
+    background-color: rgb(255, 242, 233);
+}
+
+.form-background-change {
+    /* height: 30rpx; */
+    /* padding: 30rpx 100rpx 80rpx 100rpx; */
+    background-color: rgb(255, 0, 233);
+}
+
+.item-height-change {
+    height: 30rpx;
+}
+
+.picker {
+    height: 80rpx;
+    color: #06ae79;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    border-radius: 8rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+}
+
+.star {
+    font-size: 60rpx;
+    padding-left: 15rpx;
+    padding-right: 15rpx;
+}
+
+.color_yellow {
+    color: #ff6600;
+}
+
+.color_grey {
+    color: #e6e6e6;
+}

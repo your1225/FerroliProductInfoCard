@@ -5,7 +5,9 @@ import { request } from "../../request/request.js";
 
 Page({
     data: {
-        currentBackgroundImage: ""
+        isImageLoaded: false,
+        imageUrl: app.globalData.imageUrl,
+        currentBackgroundImage: "ferroli_not_yet.png"
     },
 
     /**
@@ -24,17 +26,19 @@ Page({
             app.globalData.baId = reData.baId
             
             this.setData({
+                isImageLoaded: true,
                 currentBackgroundImage: reData.baImagePath
             })
 
             setTimeout(function () {
                 wx.reLaunch({
-                    url: '/pages/index/index'
+                    url: '/pages/appointment/appointment'
                 })
             }, 1000)
         } else {
             this.setData({
-                currentBackgroundImage: "http://183.236.245.250:9015/WeChat/ferroli_not_yet.png"
+                isImageLoaded: true,
+                currentBackgroundImage: "ferroli_not_yet.png"
             })
         }
     },
