@@ -1,0 +1,10 @@
+<!--pages/productSearch/productSearch.wxml-->
+<view class="view-search">
+    <input style="width: 650rpx;background-color: white;height: 80rpx;" type="text" value="{{piName}}" bindinput="bindPiName"></input>
+    <image style="width: 80rpx;height: 80rpx;" src="{{imageUrl}}search.png" bind:tap="hanldeSearch" />
+</view>
+<block wx:for="{{baseProductInfos}}" wx:key="bPiCode">
+    <view class="product_detail_view" bindtap="handleSelectProduct" data-item="{{item}}" data-code="{{item.bPiCode}}">{{item.displayName}}</view>
+</block>
+<mp-half-screen-dialog bindbuttontap="closeDialog" show="{{savedDialog}}" mask="{{true}}" maskClosable="{{false}}" title="{{savedTitle}}" desc="{{savedDesc}}" buttons="{{dialogButtons}}" bindclose="closeDialog">
+</mp-half-screen-dialog>

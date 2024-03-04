@@ -20,22 +20,25 @@ Page({
         imageUrl: app.globalData.imageUrl,
         qrCode: "",
         region: [],
-        macTypes: ['电热水器', '燃气热水器', '壁挂炉', '烟机灶具', '集成灶', '套餐（多件）'],
+        // macTypes: ['电热水器', '燃气热水器', '壁挂炉', '烟机灶具', '集成灶', '套餐（多件）'],
         shopInfos: [],
         loInfos: [],
         loSelectIndex: -1,
-        typeSelectIndex: 0,
+        // typeSelectIndex: 0,
         shopSelectIndex: 0,
         loBuyDate: "2022-06-18",
         loSalesName: "",
         loCusName: "",
         loCusTel: "",
         loAddress: "",
-        loMacModel: "",
+        loMacModel: "请选择机器型号",
         loMacNum: 1,
         loMacMoney: 0.00,
         loMacQrcode: "",
         loInstallDate: "2022-06-18",
+        selectProduct: {},
+        baseProductModels: [],
+        modelSelectIndex: 0,
         dtStart: "2018-01-01",
         dtEnd: "2021-01-01",
         savedDialog: false,
@@ -71,11 +74,11 @@ Page({
         this.getShopList();
     },
 
-    bindLoMacModel(e) {
-        this.setData({
-            loMacModel: e.detail.value
-        })
-    },
+    // bindLoMacModel(e) {
+    //     this.setData({
+    //         loMacModel: e.detail.value
+    //     })
+    // },
 
     bindShopSelectChange(e) {
         this.setData({
@@ -141,9 +144,15 @@ Page({
         this.getShopList();
     },
 
-    bindMacTypeChange(e) {
+    // bindMacTypeChange(e) {
+    //     this.setData({
+    //         typeSelectIndex: e.detail.value
+    //     })
+    // },
+
+    bindProductModelChange(e) {
         this.setData({
-            typeSelectIndex: e.detail.value
+            modelSelectIndex: e.detail.value
         })
     },
 
@@ -167,6 +176,14 @@ Page({
 
                 this.getShopList();
             }
+        })
+    },
+
+    handleGetProduct() {
+        console.log(this.data.baseProductModels[this.data.modelSelectIndex].bPmId)
+
+        wx.navigateTo({
+            url: '/pages/productSearch/productSearch?bPmId=' + this.data.baseProductModels[this.data.modelSelectIndex].bPmId
         })
     },
 
@@ -277,9 +294,27 @@ Page({
         })
     },
 
+    /**
+     * 获取产品类别信息
+     */
+    async getBaseProductModelList() {
+        var res = []
+
+        // console.log(this.data.region.length)
+
+        res = await request({
+            url: "OnlineStore/BaseProductModel_GetModelListByParentId/-2"
+        });
+
+        this.setData({
+            baseProductModels: res
+        })
+    },
+
     async saveData() {
         const loId = this.data.isUpdate == false ? -1 : this.data.loInfos[this.data.loSelectIndex].loId;
         const baId = app.globalData.baId;
+        const bPmId = this.data.baseProductModels[this.data.modelSelectIndex].bPmId;
         const weChatOpenId = app.globalData.openid;
         const loBuyDate = this.data.loBuyDate;
         const loCusName = this.data.loCusName;
@@ -288,8 +323,6 @@ Page({
         const loCity = this.data.region[1];
         const loDistrict = this.data.region[2];
         const loAddress = this.data.loAddress;
-        const loMacType = this.data.macTypes[this.data.typeSelectIndex];
-        const loMacModel = this.data.loMacModel;
         const loMacNum = this.data.loMacNum;
         const loMacMoney = this.data.loMacMoney;
         const loSalesName = this.data.loSalesName;
@@ -302,6 +335,21 @@ Page({
             bSiId = -1;
         }
 
+        if (Object.keys(this.data.selectProduct).length == 0) {
+            this.setData({
+                savedDialog: true,
+                savedTitle: "不允许保存",
+                savedDesc: "请先选择产品名称"
+            })
+
+            return;
+        }
+
+        console.log(this.data.selectProduct);
+        
+        const bPiCode = this.data.selectProduct.bPiCode;
+        const loMacModel = this.data.selectProduct.bPiName;
+        const loMacType = this.data.baseProductModels[this.data.modelSelectIndex].bPmName;
         // console.log(bSiId);
 
         // return;
@@ -309,6 +357,8 @@ Page({
         const saveParams = {
             loId,
             baId,
+            bPmId,
+            bPiCode,
             weChatOpenId,
             loBuyDate,
             loCusName,
@@ -328,7 +378,9 @@ Page({
             loCardSellingDate
         };
 
-        // console.log(saveParams);
+        console.log(saveParams);
+
+        // return;
 
         const {
             fOK,
@@ -393,5 +445,6 @@ Page({
         })
 
         this.getCustomerList();
+        this.getBaseProductModelList();
     }
 })

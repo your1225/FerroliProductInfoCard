@@ -5,7 +5,8 @@
         "pages/index/index",
         "pages/customerInfo/customerInfo",
         "pages/tips/tips",
-        "pages/updateQrcode/updateQrcode"
+        "pages/updateQrcode/updateQrcode",
+        "pages/productSearch/productSearch"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -19,12 +20,6 @@
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
         "list": [
-            {
-                "text": "预售信息",
-                "pagePath": "pages/appointment/appointment",
-                "iconPath": "images/tabbar_icon_appointment_default.png",
-                "selectedIconPath": "images/tabbar_icon_appointment_active.png"
-            },
             {
                 "text": "购买信息",
                 "pagePath": "pages/index/index",

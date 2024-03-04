@@ -16,6 +16,10 @@
     height: 30rpx;
 }
 
+.item-height-change-2 {
+    min-height: 30rpx;
+}
+
 .picker {
     height: 80rpx;
     color: #06ae79;

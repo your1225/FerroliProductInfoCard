@@ -1,14 +1,14 @@
 <!--index.wxml-->
 <mp-form-page title="活动购机用户信息录入" subtitle="">
     <mp-form id="form" ext-class="form-background-change">
-        <mp-cells>
+        <!-- <mp-cells>
             <mp-cell link ext-class="item-height-change">
                 <view slot="title">预售信息</view>
                 <picker mode="selector" range="{{loInfos}}" value="{{loSelectIndex}}" range-key="loCusName" bindchange="bindLoIdSelectChange">
                     <view class="picker">{{loInfos[loSelectIndex].loCusName}}</view>
                 </picker>
             </mp-cell>
-        </mp-cells>
+        </mp-cells> -->
 
         <mp-cells title="您的信息">
             <mp-cell>
@@ -55,13 +55,13 @@
             </mp-cell>
             <mp-cell ext-class="item-height-change">
                 <view slot="title">产品品类</view>
-                <picker mode="selector" range="{{macTypes}}" value="{{typeSelectIndex}}" bindchange="bindMacTypeChange">
-                    <view class="picker">{{macTypes[typeSelectIndex]}}</view>
+                <picker mode="selector" range-key="{{'bPmName'}}" range="{{baseProductModels}}" value="{{baseProductModels.bPmName}}" bindchange="bindProductModelChange">
+                    <view class="picker">{{baseProductModels[modelSelectIndex].bPmName}}</view>
                 </picker>
             </mp-cell>
-            <mp-cell ext-class="item-height-change">
+            <mp-cell ext-class="item-height-change-2" link="true" bind:tap="handleGetProduct">
                 <view slot="title">机器型号</view>
-                <input type="text" value="{{loMacModel}}" placeholder="您的机器型号" placeholder-class="weui-input__placeholder" bindinput="bindLoMacModel" />
+                <view>{{loMacModel}}</view>
             </mp-cell>
             <mp-cell ext-class="item-height-change">
                 <view slot="title">购机数量</view>

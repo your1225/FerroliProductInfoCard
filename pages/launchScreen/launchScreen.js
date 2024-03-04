@@ -32,7 +32,7 @@ Page({
 
             setTimeout(function () {
                 wx.reLaunch({
-                    url: '/pages/appointment/appointment'
+                    url: '/pages/index/index'
                 })
             }, 1000)
         } else {

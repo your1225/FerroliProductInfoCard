@@ -1,0 +1,19 @@
+/* pages/productSearch/productSearch.wxss */
+.view-search {
+    display: flex;
+    align-items: center;
+    height: 80rpx;
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+}
+
+.product_detail_view {
+    min-height: 60rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-bottom: 1rpx solid #e1e1e2;
+    margin: 0rpx 20rpx;
+}

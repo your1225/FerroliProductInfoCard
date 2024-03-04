@@ -4,5 +4,18 @@
     "setting": {
         "compileHotReLoad": true
     },
-    "libVersion": "2.26.0"
+    "libVersion": "2.26.0",
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "产品搜索",
+                    "pathName": "pages/productSearch/productSearch",
+                    "query": "bPmId=1",
+                    "launchMode": "default",
+                    "scene": null
+                }
+            ]
+        }
+    }
 }
