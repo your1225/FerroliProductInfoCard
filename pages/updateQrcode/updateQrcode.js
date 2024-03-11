@@ -24,16 +24,16 @@ Page({
                 value: 1
             }
         ],
-        qrCode: "",
-        baseProductInfo: null,
-        selectLotteryStore: null
+        qrCode: "请扫描产品侧面或底部二维码",
+        baseProductInfo: {},
+        selectLotteryStore: {}
     },
 
-    bindQrcode(e) {
-        this.setData({
-            qrCode: e.detail.value
-        })
-    },
+    // bindQrcode(e) {
+    //     this.setData({
+    //         qrCode: e.detail.value
+    //     })
+    // },
 
     handleGetProductInfo(e) {
         wx.scanCode({
@@ -90,7 +90,7 @@ Page({
 
             this.setData({
                 qrCode: "",
-                baseProductInfo: null
+                baseProductInfo: {}
             })
         }
     },
@@ -123,7 +123,24 @@ Page({
         var dataLen = this.data.qrCode.length;
 
         if (dataLen < 1) {
-            showToast({ title: "必须填入产品条码！" });
+            // showToast({ title: "必须填入产品条码！" });
+
+            this.setData({
+                savedDialog: true,
+                savedTitle: "不允许保存",
+                savedDesc: "必须填入产品条码！"
+            })
+
+            return false;
+        }
+
+        if (Object.keys(this.data.baseProductInfo).length == 0) {
+            this.setData({
+                savedDialog: true,
+                savedTitle: "不允许保存",
+                savedDesc: "请先扫描二维码！"
+            })
+
             return false;
         }
 

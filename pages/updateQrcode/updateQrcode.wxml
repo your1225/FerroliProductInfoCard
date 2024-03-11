@@ -4,7 +4,8 @@
         <mp-cells title="产品信息">
             <mp-cell ext-class="item-height-change">
                 <view>
-                    <input type="text" value="{{qrCode}}" placeholder="请扫描产品侧面或底部二维码" placeholder-class="weui-input__placeholder" bindinput="bindQrcode" />
+                    <text>{{qrCode}}</text>
+                    <!-- <input type="text" value="{{qrCode}}" placeholder="请扫描产品侧面或底部二维码" placeholder-class="weui-input__placeholder" bindinput="bindQrcode" /> -->
                 </view>
                 <view slot="footer">
                     <button type="primary" size="mini" plain="true" bindtap="handleGetProductInfo">扫码</button>

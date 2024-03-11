@@ -16,7 +16,6 @@ import {
 
 Page({
     data: {
-        isUpdate: false,
         imageUrl: app.globalData.imageUrl,
         qrCode: "",
         region: [],
@@ -51,34 +50,6 @@ Page({
             value: 1
         }]
     },
-
-    bindLoIdSelectChange(e) {
-        // console.log(e.detail.value);
-
-        if (e.detail.value < 0 || this.data.loInfos.length == 0) {
-            // console.log(e.detail.value);
-            // console.log(this.data.loInfos.length);
-
-            return;
-        }
-
-        this.setData({
-            isUpdate: true,
-            loSelectIndex: e.detail.value,
-            loCusName: this.data.loInfos[e.detail.value].loCusName,
-            loCusTel: this.data.loInfos[e.detail.value].loCusTel,
-            loAddress: this.data.loInfos[e.detail.value].loAddress,
-            region: [this.data.loInfos[e.detail.value].loProvince, this.data.loInfos[e.detail.value].loCity, this.data.loInfos[e.detail.value].loDistrict]
-        })
-
-        this.getShopList();
-    },
-
-    // bindLoMacModel(e) {
-    //     this.setData({
-    //         loMacModel: e.detail.value
-    //     })
-    // },
 
     bindShopSelectChange(e) {
         this.setData({
@@ -242,7 +213,6 @@ Page({
 
     clearData() {
         this.setData({
-            isUpdate: false,
             loCusName: "",
             loCusTel: "",
             region: [],
@@ -251,7 +221,9 @@ Page({
             loMacNum: 1,
             loMacMoney: 0,
             loSelectIndex: -1,
-            loInfos: []
+            loInfos: [],
+            loMacQrcode: "",
+            selectProduct: {}
         });
     },
 
@@ -312,7 +284,7 @@ Page({
     },
 
     async saveData() {
-        const loId = this.data.isUpdate == false ? -1 : this.data.loInfos[this.data.loSelectIndex].loId;
+        const loId = -1;
         const baId = app.globalData.baId;
         const bPmId = this.data.baseProductModels[this.data.modelSelectIndex].bPmId;
         const weChatOpenId = app.globalData.openid;
@@ -386,7 +358,7 @@ Page({
             fOK,
             fMsg
         } = await request({
-            url: this.data.isUpdate == false ? "LotteryStore/Add" : "LotteryStore/Update",
+            url: "LotteryStore/Add",
             method: "POST",
             data: saveParams
         });
