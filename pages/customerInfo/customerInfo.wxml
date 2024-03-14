@@ -2,22 +2,24 @@
 <wxs src="../../utils/filter.wxs" module="filter" />
 <view wx:if="{{lotteryStoreList.length>0}}">
     <view wx:for="{{lotteryStoreList}}" wx:key="loId" class="rec_main">
-        <view class="recContent">
-            <view style="color: green;">{{item.loMacType}}</view>
-            <view style="color: lightgray;">{{item.bSiName}}</view>
-            <view>
-                <button type="primary" size="mini" bindtap="handleSetMacQrcode" data-value="{{item.loId}}">录入机器条码</button>
+        <mp-slideview buttons="{{slideButtons}}" data-index="{{index}}" bindbuttontap="slideButtonTap">
+            <view class="recContent">
+                <view style="color: green;">{{item.loMacType}}</view>
+                <view style="color: lightgray;">{{item.bSiName}}</view>
+                <view>
+                    <button type="primary" size="mini" bindtap="handleSetMacQrcode" data-value="{{item.loId}}">录入机器条码</button>
+                </view>
             </view>
-        </view>
-        <view class="recContent">
-            <view style="color: red;font-weight: bolder;">{{item.loMacModel}}</view>
-            <view style="color: lightgray;">{{item.loMacNum}}</view>
-            <view style="color: lightgray;">{{item.loMacMoney}}</view>
-        </view>
-        <view class="recContent">
-            <view style="color: lightgray;">{{item.loMacQrcode}}</view>
-            <view style="color: lightgray;">{{filter.dateFormatStr(item.loBuyDate)}}</view>
-        </view>
+            <view class="recContent">
+                <view style="color: red;font-weight: bolder;">{{item.loMacModel}}</view>
+                <view style="color: lightgray;">{{item.loMacNum}}</view>
+                <view style="color: lightgray;">{{item.loMacMoney}}</view>
+            </view>
+            <view class="recContent">
+                <view style="color: lightgray;">{{item.loMacQrcode}}</view>
+                <view style="color: lightgray;">{{filter.dateFormatStr(item.loBuyDate)}}</view>
+            </view>
+        </mp-slideview>
     </view>
 </view>
 <view wx:else class="rec_no_data">
