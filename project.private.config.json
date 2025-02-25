@@ -4,10 +4,24 @@
     "setting": {
         "compileHotReLoad": true
     },
-    "libVersion": "2.26.0",
+    "libVersion": "3.6.6",
     "condition": {
         "miniprogram": {
             "list": [
+                {
+                    "name": "注册页",
+                    "pathName": "pages/registerPage/registerPage",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "抽奖",
+                    "pathName": "pages/lotteryPage/lotteryPage",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
                 {
                     "name": "产品搜索",
                     "pathName": "pages/productSearch/productSearch",

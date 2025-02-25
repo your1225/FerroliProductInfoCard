@@ -6,7 +6,10 @@
         "pages/customerInfo/customerInfo",
         "pages/tips/tips",
         "pages/updateQrcode/updateQrcode",
-        "pages/productSearch/productSearch"
+        "pages/productSearch/productSearch",
+        "pages/myPage/myPage",
+        "pages/lotteryPage/lotteryPage",
+        "pages/registerPage/registerPage"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -29,6 +32,12 @@
             {
                 "text": "已购信息",
                 "pagePath": "pages/customerInfo/customerInfo",
+                "iconPath": "images/tabbar_icon_appointment_default.png",
+                "selectedIconPath": "images/tabbar_icon_appointment_active.png"
+            },
+            {
+                "text": "我的",
+                "pagePath": "pages/myPage/myPage",
                 "iconPath": "images/tabbar_icon_customer_default.png",
                 "selectedIconPath": "images/tabbar_icon_customer_active.png"
             }

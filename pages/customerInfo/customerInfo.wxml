@@ -16,6 +16,15 @@
                 <view style="color: lightgray;">{{item.loMacMoney}}</view>
             </view>
             <view class="recContent">
+                <view>{{item.loProvince}} {{item.loCity}} {{item.loDistrict}}</view>
+            </view>
+            <view class="recContent">
+                <view>{{item.loAddress}}</view>
+            </view>
+            <view class="recContent">
+                <view>{{item.loCusName}}  {{item.loCusTel}}</view>
+            </view>
+            <view class="recContent">
                 <view style="color: lightgray;">{{item.loMacQrcode}}</view>
                 <view style="color: lightgray;">{{filter.dateFormatStr(item.loBuyDate)}}</view>
             </view>

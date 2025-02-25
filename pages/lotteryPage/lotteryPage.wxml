@@ -1,0 +1,32 @@
+<!--pages/lotteryPage/lotteryPage.wxml-->
+<wxs module="filter" src="../../utils/filter.wxs" />
+<view>
+    <view style="text-align: right;margin-top: 10rpx;margin-right: 15rpx;" bindtap='openRule'>*规则说明</view>
+    <view style="text-align: center;margin-top: 10rpx;font-size: 60rpx;">请抽奖</view>
+    <view id="luckdraw_box">
+        <view id="luckdraw_back">
+            <image style='transform:rotate({{change_angle}}deg)' mode="scaleToFill" src="{{imageUrl}}luckdraw_background.png" />
+        </view>
+        <view id="luckdraw_pointer" bindtap='luckDrawStart'>
+            <image mode="scaleToFill" src="{{imageUrl}}luckdraw_button.png"></image>
+        </view>
+    </view>
+    <view class="result-title">
+        <view style="font-weight: bold;">抽奖结果</view>
+    </view>
+    <view wx:for="{{userLotteryList}}" wx:key="lUlId">
+        <view style="margin-top: 15rpx;margin-left: 75rpx;">
+            <image src="{{imageUrl}}lottery_{{item.bLiId}}.jpg" mode="widthFix" style="width: 600rpx;" />
+        </view>
+        <view style="margin-left: 10rpx;">
+            <view style="text-align: left;">抽奖日期： {{filter.dateFormatFullStr(item.lUlDate)}}</view>
+        </view>
+    </view>
+</view>
+<view class="rule-background" bindtap='closeRule' hidden="{{ruleDisplay}}">
+    <view class="rule-title">
+        <text>1.每位用户每次活动可以兑换1次大转盘机会；
+        </text>
+    </view>
+    <view class="rule-button">关闭</view>
+</view>

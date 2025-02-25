@@ -5,6 +5,13 @@ var dateFormatStr = function (dateStr) {
         return ''
     }    
 }
+var dateFormatFullStr = function (dateStr) {
+    if (dateStr != null) {
+        return dateStr.replace('T', ' ')
+    } else {
+        return ''
+    }
+}
 var moneyFormat = function (money) {
     return parseFloat(money).toFixed(2);
 }
@@ -14,5 +21,6 @@ var moneyFormat = function (money) {
  */
 module.exports = {
     dateFormatStr: dateFormatStr,
-    moneyFormat: moneyFormat
+    moneyFormat: moneyFormat,
+    dateFormatFullStr: dateFormatFullStr
 }

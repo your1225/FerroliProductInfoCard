@@ -15,7 +15,9 @@ Page({
    */
     async autoLogin(wxUserCode) {
         const reData = await request({ url: "LotteryStore/WeChatAutoLogin/" + wxUserCode });
-        // console.log(wxUserCode);
+        // console.log(reData);
+
+        console.log(reData);
         app.globalData.openid = reData;
     },
 

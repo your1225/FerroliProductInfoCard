@@ -1,0 +1,75 @@
+<!--pages/myPage/myPage.wxml-->
+<wxs module="filter" src="../../utils/filter.wxs" />
+<view>
+    <view style="font-weight: bold;text-align: center;font-size: large;margin-top: 30rpx;">用户信息</view>
+    <view class="view_button" style="margin-left: 450rpx;margin-right: 30rpx;margin-top: 20rpx;" bind:tap="toRegisterPage">
+        <view style="margin-right: 15rpx;margin-top: 5rpx;">
+            <image src="{{imageUrl}}edit.png" mode="heightFix" style="height: 30rpx;" />
+        </view>
+        <view>填写地址</view>
+    </view>
+    <view wx:if="{{lotteryUser}}">
+        <block wx:if="{{lotteryUser.luImage != ''}}">
+            <image src="data:image/png;base64,{{lotteryUser.luImage}}" mode="widthFix" style="width: 200rpx;border-radius: 50%;margin-left: 275rpx;margin-top: 50rpx;" />
+        </block>
+    </view>
+    <view class="view_panel_view">
+        <view style="margin-left: 20rpx;">用户昵称</view>
+        <view style="margin-right: 20rpx;">{{lotteryUser.luName}}</view>
+    </view>
+    <view class="view_panel_view">
+        <view style="margin-left: 20rpx;">电话</view>
+        <view style="margin-right: 20rpx;">{{lotteryUser.luTel}}</view>
+    </view>
+    <view class="view_panel_view">
+        <view style="margin-left: 20rpx;">收货地址</view>
+        <view style="margin-right: 20rpx;">{{lotteryUser.luProvince}} {{lotteryUser.luCity}} {{lotteryUser.luDistrict}} {{lotteryUser.luAddress}}</view>
+    </view>
+</view>
+
+<view class="view_panel">
+    <view style="height: 20rpx;" />
+    <view class="view_button" style="margin-left: 430rpx; margin-right: 20rpx;" bind:tap="toLotteryPage">
+        <view style="margin-right: 15rpx;margin-top: 5rpx;">
+            <image src="{{imageUrl}}lottery.png" mode="heightFix" style="height: 30rpx;" />
+        </view>
+        <view>开始抽奖</view>
+    </view>
+    <view class="view_panel_view" style="padding-top: 60rpx;">
+        <view style="margin-left: 20rpx;">当前活动</view>
+        <view style="margin-right: 20rpx;">{{lotteryUserActivity.baName}}</view>
+    </view>
+    <view class="view_panel_view">
+        <view style="margin-left: 20rpx;">抽奖次数</view>
+        <view style="margin-right: 20rpx;">{{lotteryUserActivity.lUaLotteryCount}} / 1</view>
+    </view>
+    <view class="view_panel_view">
+        <view style="margin-left: 20rpx;">是否领奖</view>
+        <block wx:if="{{lotteryUserActivity.lUaIsSend == true}}">
+            <view style="margin-right: 20rpx;">已领奖</view>
+        </block>
+        <block wx:else>
+            <view style="margin-right: 20rpx;">未领</view>
+        </block>
+    </view>
+    <view class="view_panel_view">
+        <view style="margin-left: 20rpx;">领奖日期</view>
+        <view style="margin-right: 20rpx;">{{filter.dateFormatFullStr(lotteryUserActivity.lUaSendDate)}}</view>
+    </view>
+    <view class="view_panel_view">
+        <view style="margin-left: 20rpx;">备注信息</view>
+        <view style="margin-right: 20rpx;">{{lotteryUserActivity.lUaRemark}}</view>
+    </view>
+</view>
+
+<view wx:for="{{userLotteryList}}" wx:key="lUlId" class="view_panel">
+    <view style="font-weight: bold;margin-left: 20rpx;margin-top: 20rpx;">本次活动奖品</view>
+    <view style="margin-left: 75rpx;">
+        <image src="{{imageUrl}}lottery_{{item.bLiId}}.jpg" mode="widthFix" style="width: 600rpx;" />
+    </view>
+    <view style="margin-left: 10rpx;">
+        <view style="text-align: left;">抽奖日期： {{filter.dateFormatFullStr(item.lUlDate)}}</view>
+    </view>
+</view>
+
+<view style="height: 30rpx;" />

@@ -35,3 +35,32 @@ export const request = (params) => {
         console.log(error);
     });
 }
+
+export const readFile = (params) => {
+    ajaxTimes++;
+
+    //显示加载中效果
+    wx.showLoading({
+        title: '加载中',
+        mask: true
+    })
+
+    return new Promise((resolve, reject) => {
+        wx.getFileSystemManager().readFile({
+            ...params,
+            success: (result) => {
+                resolve(result.data);
+            },
+            fail: (err) => {
+                reject(err);
+            },
+            complete: () => {
+                ajaxTimes--;
+                //关闭正在等待的图标
+                if (ajaxTimes === 0) {
+                    wx.hideLoading();
+                }
+            }
+        });
+    })
+}

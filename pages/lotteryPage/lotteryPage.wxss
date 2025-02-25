@@ -1,0 +1,72 @@
+/* pages/lotteryPage/lotteryPage.wxss */
+#luckdraw_box {
+    width: 531rpx;
+    height: 531rpx;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 50rpx;
+}
+
+#luckdraw_back {
+    width: 100%;
+    height: 100%;
+}
+
+#luckdraw_back image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+}
+
+#luckdraw_pointer {
+    width: 174rpx;
+    height: 228rpx;
+    position: absolute;
+    left: 178.5rpx;
+    z-index: 999;
+    top: 132.5rpx;
+}
+
+#luckdraw_pointer image {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.result-title {
+    margin-top: 20rpx;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    display: flex;
+    color: sandybrown;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1rpx solid #e1e1e2;
+}
+
+.rule-background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.rule-title {
+    margin: 300rpx 10rpx 0rpx 10rpx;
+    background: white;
+    padding: 50rpx 20rpx 50rpx 20rpx;
+}
+
+.rule-button {
+    border-top: 1rpx solid #e1e1e2;
+    padding: 10rpx 0rpx;
+    margin: 0rpx 10rpx;
+    background: white;
+    text-align: center;
+}

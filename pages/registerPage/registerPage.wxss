@@ -1,0 +1,50 @@
+/* pages/registerPage/registerPage.wxss */
+.com-text {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    width: 100% !important;
+    /* background-color: #ff0000; */
+    background-color: inherit;
+    margin-top: 50rpx;
+}
+
+.picker {
+    color: green;
+    background-color: #e0e0e0;
+}
+
+.view-parent {
+    border-bottom: 1rpx solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #ffeeee; */
+    height: 80rpx;
+    align-items: center;
+    margin: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.view-title {
+    width: 200rpx;
+}
+
+.view-text {
+    width: 550rpx;
+}
+
+.view-text input {
+    width: 100%;
+    text-align: right;
+}
+
+.button-background {
+    background: linear-gradient(to right, #f6a007, #ea300f);
+}
+
+.button-background-radius {
+    border-radius: 20rpx;
+}

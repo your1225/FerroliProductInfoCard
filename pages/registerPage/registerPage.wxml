@@ -1,0 +1,48 @@
+<!--pages/registerPage/registerPage.wxml-->
+<view>
+    <button class="com-text" open-type="chooseAvatar" bindchooseavatar="handleUpdateImage">
+        <block wx:if="{{photoData != ''}}">
+            <image src="data:image/png;base64,{{photoData}}" mode="heightFix" style="height: 200rpx;border-radius: 50%;" />
+        </block>
+        <block wx:else>
+            <view>添加头像</view>
+        </block>
+    </button>
+    <view>
+        <button type="primary" class="button-background button-background-radius" style="height: 55rpx;font-size: 20rpx;width: 250rpx;margin-top: 50rpx;" bindtap="handleGetAddress">从我的地址获取</button>
+    </view>
+    <view class="view-parent" style="margin-top: 50rpx;">
+        <view class="view-title">昵称</view>
+        <view class="view-text">
+            <input type="text" value="{{luName}}" placeholder="您怎么称呼" placeholder-class="weui-input__placeholder" bindinput="bindLuNameChange" />
+        </view>
+    </view>
+    <view class="view-parent">
+        <view class="view-title">手机</view>
+        <view class="view-text">
+            <input type="text" value="{{luTel}}" placeholder="您的手机号码" placeholder-class="weui-input__placeholder" bindinput="bindLuTelChange" />
+        </view>
+    </view>
+    <view class="view-parent">
+        <view class="view-title">省市区</view>
+        <view class="view-text">
+            <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+                <view style="text-align: right;">{{region[0]}}_{{region[1]}}_{{region[2]}}</view>
+            </picker>
+        </view>
+    </view>
+    <view class="view-parent view-parent-remark">
+        <view class="view-title">详细地址</view>
+        <view class="view-text">
+            <input type="text" placeholder="请填写详细地址" value="{{luAddress}}" bindinput="bindLuAddressChange"></input>
+        </view>
+    </view>
+    <view style="margin-top: 80rpx;">
+        <button type="primary" class="button-background" bindtap="handlePost">确认</button>
+    </view>
+    <view style="margin-top: 50rpx;">
+        <button type="primary" style="background-color: #eeeeee;color: #9e9f9f;" bindtap="handleCancel">取消</button>
+    </view>
+</view>
+<mp-half-screen-dialog bindbuttontap="closeDialog" show="{{savedDialog}}" mask="{{true}}" maskClosable="{{false}}" title="{{savedTitle}}" desc="{{savedDesc}}" buttons="{{dialogButtons}}" bindclose="closeDialog">
+</mp-half-screen-dialog>
