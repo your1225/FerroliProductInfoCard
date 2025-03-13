@@ -153,9 +153,9 @@ Page({
     },
 
     async getUserLotteryList(weChatOpenId, bAId) {
-        // const reData = await request({
-        //     url: "LotteryUserLottery/GetModelList/" + bAId + "/" + weChatOpenId
-        // });
+        const reData = await request({
+            url: "LotteryUserLottery/GetModelList/" + bAId + "/" + weChatOpenId
+        });
 
         // console.log(reData);
 
