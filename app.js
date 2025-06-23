@@ -15,9 +15,9 @@ App({
 //   },
   globalData: {
     baseUrl: 'https://barcode.ferroli.com.cn:9014/api/',
-    imageUrl: 'http://barcode.ferroli.com.cn:9020/FerroliFile/WeChat/',
+    imageUrl: 'https://barcode.ferroli.com.cn:9022/FerroliFile/WeChat/',
     userInfo: null,
-    publishDate: '法罗力 发布日期：2022-10-15',
+    publishDate: '法罗力 发布日期：2025-06-23',
     baId: 0,
     openid: ""
   }

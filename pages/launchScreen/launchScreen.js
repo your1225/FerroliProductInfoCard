@@ -19,6 +19,12 @@ Page({
 
         console.log(reData);
         app.globalData.openid = reData;
+
+        setTimeout(function () {
+            wx.reLaunch({
+                url: '/pages/index/index'
+            })
+        }, 1000)
     },
 
     async getCurrentActivity() {
@@ -31,12 +37,6 @@ Page({
                 isImageLoaded: true,
                 currentBackgroundImage: reData.baImagePath
             })
-
-            setTimeout(function () {
-                wx.reLaunch({
-                    url: '/pages/index/index'
-                })
-            }, 1000)
         } else {
             this.setData({
                 isImageLoaded: true,
